@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Nuev Posteo{% endblock %}</h1>
+  <h1>{% block title %}Nuevo Posteo{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
@@ -10,6 +10,6 @@
     <input name="title" id="title" value="{{ request.form['title'] }}" required>
     <label for="body">Escribir el posteo aca</label>
     <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
-    <input type="submit" value="Save">
+    <input type="submit" value="Guardar">
   </form>
 {% endblock %}
