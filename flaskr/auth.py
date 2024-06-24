@@ -95,3 +95,28 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+@bp.route('/<int:id>/modEmail', methods=('GET', 'POST'))
+@login_required
+def modEmail():
+    email = request.form['email']
+
+    if request.method == 'POST':
+        email = request.form['email']
+        error = None
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                """"UPDATE user
+                        SET email = ?
+                        WHERE id = ?;
+                        """,
+                (email)
+            )
+            db.commit()
+            return redirect(url_for('auth.modEmail'))
+
+    return render_template('auth/modEmail.html', email = email)
